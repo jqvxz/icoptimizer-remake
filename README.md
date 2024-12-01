@@ -1,4 +1,3 @@
-# Releasing soon
 
 # Info
 - This repo does not include every file of the unpacked application due to keys or ids that should not be leaked.
