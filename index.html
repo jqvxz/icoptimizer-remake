@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="renderer.js"></script>
+    <title>IC - Optimizer</title>
+</head>
+<body>
+    <div class="header">
+        <div class="version-info">
+            <span>Version: b-0.2.4 pre</span>
+        </div>
+        <img class="header-image" src="img/icopt.svg">
+        <div class="dark-mode-toggle">
+            <span>Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="left-panel">
+            <div class="execute-header">
+                <p>General Windows optimization</p>
+            </div>
+            <div class="item">
+                <span>Kill useless apps</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="kill-apps" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Modify Windows search</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="modify-search" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable Error Report</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-error-report" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable Windows Telemetry</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-telemetry" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable Compatibility Assistant</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-compatibility" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable Remote Registry service</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-registry" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable Cortana</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-cortana" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable Remote Management service</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-remote-management" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable Windows Sticky keys</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-sticky-keys" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Restart Explorer.exe (error)</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="restart-explorer" unchecked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Restart Audiosrv</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="restart-audiosrv" unchecked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disk Cleanup</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disk-cleanup" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Clear Windows Temp / Bin</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="clear-temp-bin" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Check for problematic programs (soon)</span> <!-- WARNING CREATE OUTPUT WINDOW FOR THAT COMMAND--> <!-- PLEASE HELP ME I DONT KNOW HOW-->
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="check-programs" unchecked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="execute-header">
+                <p>Windows Ping / Network optimization</p>
+            </div>
+            <div class="item">
+                <span>Clear DNS cache</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="clear-dns-cache" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Reset Network Adapter</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="reset-network-adapter" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Reset IP stack</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="reset-ip-stack" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Perform TCP edit</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="tcp-edit" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Clear ARP</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="clear-arp" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Game ping optimization (soon)</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="soon" unchecked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer"> 
+        <button id="execute-operations" class="execute-button">Execute </button>
+        <button id="close-program" class="cancel-button">Close</button>
+    </div>
+
+    <div class="current-opt-holder" id="current-operation-container" style="display: none;">
+        <p><span id="current-operation">None</span></p>
+    </div>
+
+</body>
+</html>
