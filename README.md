@@ -1,3 +1,5 @@
+# Releasing soon
+
 # What is this about?
 icoptimizer remake is an Electron-based project that recreates the previously made icoptimizer while utilizing a better UI and more customizability options.
 
