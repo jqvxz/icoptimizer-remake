@@ -7,6 +7,7 @@ icoptimizer remake is an Electron-based project that recreates the previously ma
 icoptimizer was created to improve Windows performance while maintaining almost all of its functionality.
 I developed the program because other optimizers are either ineffective or overly complicated.
 You can use icoptimizer to optimize your in-game performance and reduce latency.
+For a more lightweight version use the original icoptimizer (might be outdated)
 
 # How to use?
 - Install the program using the installer provided in the releases tab
