@@ -1,7 +1,7 @@
 # Releasing soon
 
 # Info
-- this repo does not include every file of the unpacked application due to keys or ids that should not be leaked.
+- This repo does not include every file of the unpacked application due to keys or ids that should not be leaked.
 - icoptimizer might be unstable, crash or not work since this is my first electron program.
 
 # How to use?
