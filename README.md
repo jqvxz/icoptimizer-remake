@@ -9,7 +9,7 @@
 - Click "exceute" at the bottom of the app and wait
 - You can switch to Light / Dark mode using the top left slider
 
-# VirusTotal
+# VirusTotal scan results
 
 - https://www.virustotal.com/gui/file/e4bca7ab112a88c242c7240c90585ee52ff13bee58d77ab75d1dc1a135fdd008/detection
 - Bkav Pro detects the program as a "W32.AIDetectMalware" please dm if you can help me
