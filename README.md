@@ -7,7 +7,7 @@
 - Install the program using the installer provided in the releases tab
 - Execute the installed program and select your tweaks
 - Click "exceute" at the bottom of the app and wait
-- You can switch to Light / Dark mode using the top left slider
+- You can switch to Light / Dark mode using the top right slider
 
 # VirusTotal scan results
 
