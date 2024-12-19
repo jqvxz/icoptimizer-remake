@@ -27,13 +27,13 @@ For a more lightweight version use the original icoptimizer (might be outdated)
 
 This software is provided **"as is"** without any guarantees or warranties of any kind. By using this software, you agree to the following:
 
-## No Warranty or Guarantee
+No Warranty or Guarantee
 The developer makes no guarantees regarding the software’s accuracy, functionality, or suitability for any particular purpose. It is provided without warranty of any kind, express or implied.
 
-## Use at Your Own Risk
+Use at Your Own Risk
 The user assumes all risks associated with using this software. This includes, but is not limited to, potential data loss, hardware damage, or system malfunctions.
 
-## Limitation of Liability
+Limitation of Liability
 To the extent permitted by applicable law, the developer shall not be held liable for any direct, indirect, incidental, consequential, or other damages arising from the use or inability to use this software. This includes damages resulting from errors, bugs, or software incompatibilities.
 
 # UI
