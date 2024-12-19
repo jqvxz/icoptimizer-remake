@@ -27,14 +27,13 @@ For a more lightweight version use the original icoptimizer (might be outdated)
 
 This software is provided **"as is"** without any guarantees or warranties of any kind. By using this software, you agree to the following:
 
-No Warranty or Guarantee
-The developer makes no guarantees regarding the software’s accuracy, functionality, or suitability for any particular purpose. It is provided without warranty of any kind, express or implied.
+No Warranty or Guarantee: The developer makes no guarantees regarding the software’s accuracy, functionality, or suitability for any particular purpose. It is provided without warranty of any kind, express or implied.
 
-Use at Your Own Risk
-The user assumes all risks associated with using this software. This includes, but is not limited to, potential data loss, hardware damage, or system malfunctions.
+Use at Your Own Risk: The user assumes all risks associated with using this software. This includes, but is not limited to, potential data loss, hardware damage, or system malfunctions.
 
-Limitation of Liability
-To the extent permitted by applicable law, the developer shall not be held liable for any direct, indirect, incidental, consequential, or other damages arising from the use or inability to use this software. This includes damages resulting from errors, bugs, or software incompatibilities.
+Limitation of Liability: To the extent permitted by applicable law, the developer shall not be held liable for any direct, indirect, incidental, consequential, or other damages arising from the use or inability to use this software. This includes damages resulting from errors, bugs, or software incompatibilities.
+
+Legal Compliance: This disclaimer complies with § 521 BGB (German Civil Code) concerning liability exclusions for gratuitously provided software. This software is provided free of charge as a service to the community.
 
 # UI
 ![image](https://github.com/user-attachments/assets/0493c72f-6a42-4112-9fa2-4633bd06eeca)
