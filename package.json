@@ -1,7 +1,7 @@
 {
   "name": "icoptimizer",
   "productName": "icoptimizer",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "icoptimizer for windows",
   "main": "main.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "discord-rpc": "^4.0.1"
-  },
+  },  
   "devDependencies": {
     "electron": "^33.2.1",
     "electron-builder": "^24.13.3"
@@ -28,7 +28,7 @@
       "target": "nsis",
       "icon": "img/ic-icon.ico",
       "requestedExecutionLevel": "requireAdministrator",
-      "executableName": "icoptimizer-0.2.4"
+      "executableName": "icoptimizer-0.2.5"
     },
     "nsis": {
       "oneClick": false,

@@ -19,11 +19,31 @@ body {
     font-size: 20px;
 }
 
-.footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 2px solid #ddd;
+.header .version-info {
+    text-align: left;
 }
+
+.footer {
+    border-top: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.footer-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    pointer-events: auto;
+}
+
 
 .execute-button {
     background-color: #486cd8;
@@ -31,7 +51,7 @@ body {
     padding: 10px 10px;
     border: 1px solid#486cd8;
     width: 200px;
-    margin-right: 5px;
+    margin-right: 10px;
     transition: 0.4s;
 }
 
@@ -43,12 +63,25 @@ body {
     background-color: transparent;
     border: 1px solid#486cd8;
     padding: 10px 10px;
-    margin-left: 5px;
+    margin-left: 10px;
     width: 200px;
     transition: 0.4s;
 }
 
 .cancel-button:hover {
+    background-color: #486cd8;
+}
+
+.restart-button{
+    margin-left: auto;
+    border: 1px solid#486cd8;
+    padding: 10px 10px;
+    background-color: transparent;
+    color: white;
+    transition: 0.4s;
+}
+
+.restart-button:hover {
     background-color: #486cd8;
 }
 
@@ -82,6 +115,9 @@ body {
 
 .item span {
     font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .switch {
@@ -162,12 +198,19 @@ input:not(:checked) + .slider:before {
 
 .version-info {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: absolute;
     top: 20px;
     left: 20px;
     font-size: 16px;
     gap: 10px;
+    flex-direction: column;
+    text-align: left;
+}
+
+a {
+    text-decoration: underline;
+    color: black;
 }
 
 /* Dark Modee */
@@ -179,6 +222,13 @@ input:not(:checked) + .slider:before {
     top: 20px;
     right: 20px;
     font-size: 16px;
+}
+
+.info-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-left: 5px;
 }
 
 body.dark-mode {
@@ -196,6 +246,10 @@ body.dark-mode .left-panel,
 body.dark-mode .right-panel {
     background-color: #1e1e1e;
     border-color: #333;
+}
+
+body.dark-mode .info-icon {
+    filter: invert(1);
 }
 
 body.dark-mode .item span {
@@ -218,4 +272,8 @@ body.dark-mode .slider:before {
 body.dark-mode .header-image {
     filter: invert(1);
     opacity: 0.8;
+}
+
+body.dark-mode .version-info a {
+    color: #ffffff;
 }

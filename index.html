@@ -10,12 +10,14 @@
 <body>
     <div class="header">
         <div class="version-info">
-            <span>Version: b-0.2.4 pre</span>
+            <span>Version: b-0.2.5 pre</span>
+            <a href="https://github.com/jqvxz/icoptimizer-remake" target="_blank"><span>Github</span></a>
+            <a href="https://discord.gg/enf9WY5pPn" target="_blank"><span>Discord</span></a>
         </div>
         <img class="header-image" src="img/icopt.svg">
         <div class="dark-mode-toggle">
             <span>Dark Mode</span>
-            <label class="switch">
+            <label class="switch"> 
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider"></span>
             </label>
@@ -91,16 +93,16 @@
                 </label>
             </div>
             <div class="item">
-                <span>Restart Explorer.exe (error)</span>
+                <span>Restart Explorer.exe<img class="info-icon" src="img/info.svg" title="Might crash the program on w11 pcs"></span>
                 <label class="switch">
-                    <input type="checkbox" class="checkbox" id="restart-explorer" unchecked>
+                    <input type="checkbox" class="checkbox" id="restart-explorer" checked>
                     <span class="slider"></span>
                 </label>
             </div>
             <div class="item">
                 <span>Restart Audiosrv</span>
                 <label class="switch">
-                    <input type="checkbox" class="checkbox" id="restart-audiosrv" unchecked>
+                    <input type="checkbox" class="checkbox" id="restart-audiosrv" checked>
                     <span class="slider"></span>
                 </label>
             </div>
@@ -112,16 +114,30 @@
                 </label>
             </div>
             <div class="item">
-                <span>Clear Windows Temp / Bin</span>
+                <span>Clear Windows Temp / Bin</span> 
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="clear-temp-bin" checked>
                     <span class="slider"></span>
                 </label>
             </div>
             <div class="item">
-                <span>Check for problematic programs (soon)</span> <!-- WARNING CREATE OUTPUT WINDOW FOR THAT COMMAND--> <!-- PLEASE HELP ME I DONT KNOW HOW-->
+                <span>Use SFC</span>
                 <label class="switch">
-                    <input type="checkbox" class="checkbox" id="check-programs" unchecked>
+                    <input type="checkbox" class="checkbox" id="sfc-scan" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable auto start<img class="info-icon" src="img/info.svg" title="Still in development (will only affect some apps)"></span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-startup-programs" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Check for problematic programs<img class="info-icon" src="img/info.svg" title="Still in development (might work)"></span> <!-- OUTPUT ONLY AS ALERT-->
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="check-programs" checked>
                     <span class="slider"></span>
                 </label>
             </div>
@@ -166,6 +182,13 @@
                 </label>
             </div>
             <div class="item">
+                <span>Release and renew ip</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="release-renew-ip" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
                 <span>Game ping optimization (soon)</span>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="soon" unchecked>
@@ -176,8 +199,11 @@
     </div>
 
     <div class="footer"> 
-        <button id="execute-operations" class="execute-button">Execute </button>
-        <button id="close-program" class="cancel-button">Close</button>
+        <div class="footer-wrapper">
+            <button id="execute-operations" class="execute-button">Execute </button>
+            <button id="close-program" class="cancel-button">Close</button>
+        </div>
+        <button id="restart-button" class="restart-button">Restart</button>
     </div>
 
     <div class="current-opt-holder" id="current-operation-container" style="display: none;">

@@ -6,6 +6,8 @@ const appPath = path.join(__dirname, 'main.js');
 // Run with admin command (remove if u want to run without)
 const command = `powershell.exe -Command "Start-Process '${electron}' -ArgumentList '${appPath}' -Verb RunAs"`;
 
+process.env.ELECTRON_ENABLE_LOGGING = 'true';
+
 // Execute
 exec(command, (error, stdout, stderr) => {
   if (error) {

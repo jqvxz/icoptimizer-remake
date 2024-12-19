@@ -1,17 +1,18 @@
-const { app, BrowserWindow, ipcMain, Menu, nativeImage } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, nativeImage, shell } = require('electron'); // Step 1: Import shell
 const path = require('path');
+const { exec } = require('child_process');
 const { executeOptimizations } = require('./optimizations');
 
 let mainWindow;
 
-const gotTheLock = app.requestSingleInstanceLock();
+const Locked = app.requestSingleInstanceLock();
 
-if (!gotTheLock) {
+if (!Locked) {
     console.log('Only one instance can run at the same time.');
     app.quit();
 } else {
     app.on('second-instance', (event, commandLine, workingDirectory) => {
-        // Someone tried to run a second instance, we should focus our window.
+
         if (mainWindow) {
             if (mainWindow.isMinimized()) mainWindow.restore();
             mainWindow.focus();
@@ -29,6 +30,11 @@ if (!gotTheLock) {
             },
             autoHideMenuBar: true,
             icon: path.join(__dirname, '/img/ic-icon.ico')
+        });
+
+        mainWindow.webContents.setWindowOpenHandler((details) => {
+            shell.openExternal(details.url); // Open link in browser
+            return { action: 'deny' };
         });
 
         Menu.setApplicationMenu(null);
@@ -93,6 +99,26 @@ if (!gotTheLock) {
             app.exit(0);
         }
     });
+
+    ipcMain.on('restart-button', (event) => {
+        console.log('Received restart message in main process');
+        try {
+            console.log('Restarting PC...');
+            runCommand('shutdown /r /t 1');
+            event.reply('restarting', 'System is restarting now');
+        } catch (error) {
+            console.error('Error while restarting PC:', error);8789
+            event.reply('restart-error', `Error: ${error.message}`);
+        }
+    });
+    
+    function runCommand(command) {
+        exec(command, (error) => {
+            if (error) {
+                console.error(`Error executing command: ${error.message}`);
+            }
+        });
+    }
 
     process.on('uncaughtException', (error) => {
         console.error('Uncaught exception:', error);

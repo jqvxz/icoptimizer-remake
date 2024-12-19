@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const executeButton = document.getElementById('execute-operations');
     const closeButton = document.getElementById('close-program');
+    const restartButton = document.getElementById('restart-button'); // New restart button
     const checkboxes = document.querySelectorAll('.checkbox');
     const currentOperationContainer = document.getElementById('current-operation-container');
     const currentOperationSpan = document.getElementById('current-operation');
 
+    // Execute operations button event listener
     executeButton.addEventListener('click', () => {
         console.log('Execute button clicked');
         const selectedOperations = Array.from(checkboxes)
@@ -38,12 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 200);
     });
 
+    // Close application button event listener
     closeButton.addEventListener('click', () => {
         console.log('Close button clicked');
         ipcRenderer.send('close-app');
     });
+
+    // Restart application button event listener
+    restartButton.addEventListener('click', () => {
+        console.log('Restart button clicked');
+        ipcRenderer.send('restart-button'); // Send message to main process to restart
+    });
 });
 
+// IPC listeners for current operation, results, and errors
 ipcRenderer.on('current-operation', (event, operation) => {
     console.log('Received current-operation:', operation);
     const currentOperationSpan = document.getElementById('current-operation');
@@ -56,7 +66,7 @@ ipcRenderer.on('operation-results', (event, results) => {
     const currentOperationContainer = document.getElementById('current-operation-container');
     executeButton.disabled = false;
     currentOperationContainer.style.display = 'none';
-    alert('All optimizations were executed successfully (Please restart your pc)');
+    alert('All optimizations were executed successfully (Please restart your PC)');
 });
 
 ipcRenderer.on('operation-error', (event, error) => {
@@ -68,6 +78,7 @@ ipcRenderer.on('operation-error', (event, error) => {
     alert('An error occurred while executing');
 });
 
+// Dark mode toggle functionality
 document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
 
