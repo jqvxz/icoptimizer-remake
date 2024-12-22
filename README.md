@@ -9,7 +9,7 @@
 - Click "exceute" at the bottom of the app and wait
 - You can switch to Light / Dark mode using the top right slider
 
-# Installation guide (build it yourself with electron) 
+# Installation guide for building it by yourself
 ```Batch
 winget install nodejs
 winget install git
