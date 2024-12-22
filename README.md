@@ -13,8 +13,13 @@
 ```Batch
 winget install nodejs
 winget install git
+npm install -g electron
+npm install -g electron-packager
+npm install -g electron-builder
+npm install -g @electron-forge/cli
 git clone https://github.com/jqvxz/icoptimizer-remake
 cd icoptimizer-remake
+npm install
 npm run build
 ```
 
