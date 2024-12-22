@@ -1,7 +1,7 @@
 const { app } = require('electron');
 const { Client } = require('discord-rpc');
 
-const CLIENT_ID = '1312025186861842502'; 
+const CLIENT_ID = 'CLIENT_ID_PLACEHOLDER'; 
 
 const rpc = new Client({ transport: 'ipc' });
 
