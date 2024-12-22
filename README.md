@@ -21,6 +21,7 @@ git clone https://github.com/jqvxz/icoptimizer-remake
 cd icoptimizer-remake
 npm install
 npm run build
+npm start
 ```
 
 # VirusTotal scan results
