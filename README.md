@@ -10,12 +10,17 @@
 - You can switch to Light / Dark mode using the top right slider
 
 # Installation guide
+# Build it yourself (electron required)
 ```Batch
+winget install nodejs
 winget install git
 git clone https://github.com/jqvxz/icoptimizer-remake
 cd icoptimizer-remake
 npm run build
 ```
+# Use the installer
+- Install the icoptimizer.setup.exe
+- Follow the installation guide
 
 # VirusTotal scan results
 
