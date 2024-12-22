@@ -9,6 +9,14 @@
 - Click "exceute" at the bottom of the app and wait
 - You can switch to Light / Dark mode using the top right slider
 
+# Installation guide
+```Batch
+winget install git
+git clone https://github.com/jqvxz/icoptimizer-remake
+cd icoptimizer-remake
+npm run build
+```
+
 # VirusTotal scan results
 
 - https://www.virustotal.com/gui/file/e4bca7ab112a88c242c7240c90585ee52ff13bee58d77ab75d1dc1a135fdd008/detection
