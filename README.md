@@ -1,7 +1,7 @@
 
 # Info
-- This repo does not include every file of the unpacked application
-- icoptimizer might be unstable, crash or not work since this is my first electron program.
+- icoptimizer might be unstable, crash or not work since this is my first electron program
+- The program modifies system functionality. Therefore, some features of the Windows operating system will be affected by the application
 
 # How to use?
 - Install the program using the installer provided in the releases tab
