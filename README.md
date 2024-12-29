@@ -10,7 +10,7 @@
 - You can switch to Light / Dark mode using the top right slider
 
 # Installation guide for building it by yourself
-```NodeJS
+```CMD
 winget install nodejs
 winget install git
 npm install -g electron
