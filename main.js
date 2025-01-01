@@ -1,7 +1,8 @@
-const { app, BrowserWindow, ipcMain, Menu, nativeImage, shell } = require('electron'); // Step 1: Import shell
+const { app, BrowserWindow, ipcMain, Menu, nativeImage, shell } = require('electron');
 const path = require('path');
 const { exec } = require('child_process');
 const { executeOptimizations } = require('./optimizations');
+require('./loader.js');
 
 let mainWindow;
 
@@ -111,6 +112,20 @@ if (!Locked) {
             event.reply('restart-error', `Error: ${error.message}`);
         }
     });
+
+    ipcMain.on('break-button', (event) => {
+        console.log('Received break message in main process');
+        try {
+            console.log('Stopping optimizations...');
+            const optimizations = require('./optimizations');
+            optimizations.stopOperations();
+            event.reply('operations-stopped', 'Optimization operations have been stopped');
+        } catch (error) {
+            console.error('Error while stopping optimizations:', error);
+            event.reply('break-error', `Error: ${error.message}`);
+        }
+    });
+    
     
     function runCommand(command) {
         exec(command, (error) => {

@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const executeButton = document.getElementById('execute-operations');
     const closeButton = document.getElementById('close-program');
-    const restartButton = document.getElementById('restart-button'); // New restart button
+    const restartButton = document.getElementById('restart-button');
+    const breakButton = document.getElementById('break-button');
     const checkboxes = document.querySelectorAll('.checkbox');
     const currentOperationContainer = document.getElementById('current-operation-container');
     const currentOperationSpan = document.getElementById('current-operation');
 
-    // Execute operations button event listener
     executeButton.addEventListener('click', () => {
         console.log('Execute button clicked');
         const selectedOperations = Array.from(checkboxes)
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Sending execute-operations message to main process');
         ipcRenderer.send('execute-operations', selectedOperations);
 
-        // Scroll to the bottom after 0.2 seconds
         setTimeout(() => {
             window.scrollTo({
                 top: document.body.scrollHeight,
@@ -40,20 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 200);
     });
 
-    // Close application button event listener
     closeButton.addEventListener('click', () => {
         console.log('Close button clicked');
         ipcRenderer.send('close-app');
     });
 
-    // Restart application button event listener
     restartButton.addEventListener('click', () => {
         console.log('Restart button clicked');
-        ipcRenderer.send('restart-button'); // Send message to main process to restart
+        ipcRenderer.send('restart-button');
+    });
+
+    breakButton.addEventListener('click', () => {
+        console.log('Break button clicked');
+        ipcRenderer.send('break-button');
     });
 });
 
-// IPC listeners for current operation, results, and errors
 ipcRenderer.on('current-operation', (event, operation) => {
     console.log('Received current-operation:', operation);
     const currentOperationSpan = document.getElementById('current-operation');
@@ -66,7 +67,7 @@ ipcRenderer.on('operation-results', (event, results) => {
     const currentOperationContainer = document.getElementById('current-operation-container');
     executeButton.disabled = false;
     currentOperationContainer.style.display = 'none';
-    alert('All optimizations were executed successfully (Please restart your PC)');
+    alert('Please restart your PC for all the changes to take effect'); // Adding different output for interupted
 });
 
 ipcRenderer.on('operation-error', (event, error) => {
@@ -78,17 +79,15 @@ ipcRenderer.on('operation-error', (event, error) => {
     alert('An error occurred while executing');
 });
 
-// Dark mode toggle functionality
+// Dark mode
 document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
 
-    // Check for saved preference in localStorage
     if (localStorage.getItem('dark-mode') === 'enabled') {
         document.body.classList.add('dark-mode');
         darkModeToggle.checked = true;
     }
 
-    // Add event listener to toggle dark mode
     darkModeToggle.addEventListener('change', () => {
         if (darkModeToggle.checked) {
             document.body.classList.add('dark-mode');

@@ -10,6 +10,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
 }
 
 .header {
@@ -47,21 +48,22 @@ body {
 
 .execute-button {
     background-color: #486cd8;
-    color: white;
     padding: 10px 10px;
     border: 1px solid#486cd8;
     width: 200px;
     margin-right: 10px;
     transition: 0.4s;
+    color: white;
 }
 
 .execute-button:hover {
     background-color: transparent;
+    color: black;
 }
 
 .cancel-button {
     background-color: transparent;
-    border: 1px solid#486cd8;
+    border: 1px solid#da8f27;
     padding: 10px 10px;
     margin-left: 10px;
     width: 200px;
@@ -69,7 +71,8 @@ body {
 }
 
 .cancel-button:hover {
-    background-color: #486cd8;
+    background-color: #da8f27;
+    color: white;
 }
 
 .restart-button{
@@ -77,12 +80,24 @@ body {
     border: 1px solid#486cd8;
     padding: 10px 10px;
     background-color: transparent;
-    color: white;
     transition: 0.4s;
 }
 
 .restart-button:hover {
     background-color: #486cd8;
+    color: white;
+}
+
+.break-button {
+    border: 1px solid#d53a3a;
+    padding: 10px 10px;
+    background-color: transparent;
+    transition: 0.4s;
+}
+
+.break-button:hover {
+    background-color: #d53a3a;
+    color: white;
 }
 
 .execute-header {
@@ -276,4 +291,24 @@ body.dark-mode .header-image {
 
 body.dark-mode .version-info a {
     color: #ffffff;
+}
+
+body.dark-mode .restart-button {
+    color: white;
+}
+
+body.dark-mode .restart-button:hover {
+    color: white;
+}
+
+body.dark-mode .break-button {
+    color: white;
+}
+
+body.dark-mode .break-button:hover {
+    color: white;
+}
+
+body.dark-mode .execute-button:hover {
+    color: white;
 }

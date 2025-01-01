@@ -1,7 +1,7 @@
 {
   "name": "icoptimizer",
   "productName": "icoptimizer",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "icoptimizer for windows",
   "main": "main.js",
   "scripts": {
@@ -28,7 +28,7 @@
       "target": "nsis",
       "icon": "img/ic-icon.ico",
       "requestedExecutionLevel": "requireAdministrator",
-      "executableName": "icoptimizer-0.2.5"
+      "executableName": "icoptimizer-0.2.6"
     },
     "nsis": {
       "oneClick": false,

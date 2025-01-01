@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="renderer.js"></script>
-    <title>IC - Optimizer</title>
+    <title>IC OPTIMIZER</title>
 </head>
 <body>
     <div class="header">
         <div class="version-info">
-            <span>Version: b-0.2.5 pre</span>
+            <span>Version: b-0.2.6 pre</span>
             <a href="https://github.com/jqvxz/icoptimizer-remake" target="_blank"><span>Github</span></a>
             <a href="https://discord.gg/enf9WY5pPn" target="_blank"><span>Discord</span></a>
         </div>
@@ -189,9 +189,9 @@
                 </label>
             </div>
             <div class="item">
-                <span>Game ping optimization (soon)</span>
+                <span>Reset firewall rules<img class="info-icon" src="img/info.svg" title="Can be annoying (you have to allow for every program again)"></span>
                 <label class="switch">
-                    <input type="checkbox" class="checkbox" id="soon" unchecked>
+                    <input type="checkbox" class="checkbox" id="reset-firewall" checked>
                     <span class="slider"></span>
                 </label>
             </div>
@@ -199,6 +199,7 @@
     </div>
 
     <div class="footer"> 
+        <button id="break-button" class="break-button">Stop</button>
         <div class="footer-wrapper">
             <button id="execute-operations" class="execute-button">Execute </button>
             <button id="close-program" class="cancel-button">Close</button>
@@ -209,6 +210,16 @@
     <div class="current-opt-holder" id="current-operation-container" style="display: none;">
         <p><span id="current-operation">None</span></p>
     </div>
+
+    <button style="display: none;" id="uncheckButton">Uncheck All</button> <!--Will be implemented in the next update-->
+    <script>
+        function uncheckAll() {
+            document.querySelectorAll('input[type="checkbox"]:not(#dark-mode-toggle)').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        }
+        document.getElementById('uncheckButton').addEventListener('click', uncheckAll);
+    </script>
 
 </body>
 </html>

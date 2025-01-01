@@ -3,7 +3,7 @@ const path = require('path');
 const electron = require('electron');
 const appPath = path.join(__dirname, 'main.js');
 
-// Run with admin command (remove if u want to run without)
+// Comment or remove this line to run without admin
 const command = `powershell.exe -Command "Start-Process '${electron}' -ArgumentList '${appPath}' -Verb RunAs"`;
 
 process.env.ELECTRON_ENABLE_LOGGING = 'true';
