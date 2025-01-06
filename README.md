@@ -38,6 +38,9 @@ I developed the program because other optimizers are either ineffective or overl
 You can use icoptimizer to optimize your in-game performance and reduce latency.
 For a more lightweight version use the original icoptimizer (might be outdated)
 
+# UI
+![ui](https://github.com/user-attachments/assets/a53af16f-2daf-4fb9-ac87-14c1e3177578)
+
 # Disclaimer / Haftungsausschluss
 
 This software is provided **"as is"** without any guarantees or warranties of any kind. By using this software, you agree to the following:
