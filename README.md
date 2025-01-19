@@ -26,7 +26,7 @@ npm start
 
 # VirusTotal scan results
 
-- https://www.virustotal.com/gui/file/e4bca7ab112a88c242c7240c90585ee52ff13bee58d77ab75d1dc1a135fdd008/detection
+- [VirusTotal scan](https://www.virustotal.com/gui/file/e11e1eee3131ef6b49abe9bda5cd97a97a731988963736d6971498625b4e5b6e)
 - Bkav Pro detects the program as a "W32.AIDetectMalware" please dm if you can help me
 
 # What is this about?
