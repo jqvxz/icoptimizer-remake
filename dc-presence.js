@@ -1,7 +1,7 @@
 const { app } = require('electron');
 const { Client } = require('discord-rpc');
 
-const CLIENT_ID = 'CLIENT_ID_PLACEHOLDER'; 
+const CLIENT_ID = '1312025186861842502'; 
 
 const rpc = new Client({ transport: 'ipc' });
 
@@ -11,7 +11,7 @@ rpc.on('ready', () => {
     // Set activity
     rpc.setActivity({
         details: "Windows optimizer by jqvon",
-        state: "Running icoptimizer",
+        state: "Version 0.2.7 - pre", 
         startTimestamp: new Date(),
         largeImageKey: 'app_icon', 
         largeImageText: 'icoptimizer',

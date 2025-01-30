@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const { executeOptimizations } = require('./optimizations');
 require('./loader.js');
 
+
 let mainWindow;
 
 const Locked = app.requestSingleInstanceLock();
@@ -104,7 +105,7 @@ if (!Locked) {
     ipcMain.on('restart-button', (event) => {
         console.log('Received restart message in main process');
         try {
-            console.log('Restarting PC...');
+            console.log('Restarting PC');
             runCommand('shutdown /r /t 1');
             event.reply('restarting', 'System is restarting now');
         } catch (error) {
@@ -116,7 +117,7 @@ if (!Locked) {
     ipcMain.on('break-button', (event) => {
         console.log('Received break message in main process');
         try {
-            console.log('Stopping optimizations...');
+            console.log('Stopping optimizations');
             const optimizations = require('./optimizations');
             optimizations.stopOperations();
             event.reply('operations-stopped', 'Optimization operations have been stopped');
@@ -125,7 +126,21 @@ if (!Locked) {
             event.reply('break-error', `Error: ${error.message}`);
         }
     });
-    
+
+    ipcMain.on('launch-debug', () => {
+        const vbsPath = path.join(__dirname, 'debug', 'launch-debug.vbs');
+        exec(`cscript "${vbsPath}"`, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error executing VBS script: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`VBS script stderr: ${stderr}`);
+                return;
+            }
+            console.log(`VBS script stdout: ${stdout}`);
+        });
+    });
     
     function runCommand(command) {
         exec(command, (error) => {
@@ -134,6 +149,7 @@ if (!Locked) {
             }
         });
     }
+
 
     process.on('uncaughtException', (error) => {
         console.error('Uncaught exception:', error);

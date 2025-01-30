@@ -1,7 +1,7 @@
 {
   "name": "icoptimizer",
   "productName": "icoptimizer",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "icoptimizer for windows",
   "main": "main.js",
   "scripts": {
@@ -15,8 +15,10 @@
   "author": "jqvon",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "discord-rpc": "^4.0.1"
-  },  
+    "discord-rpc": "^4.0.1",
+    "network-speed": "^2.1.1",
+    "ping": "^0.4.4"
+  },
   "devDependencies": {
     "electron": "^33.2.1",
     "electron-builder": "^24.13.3"
@@ -28,11 +30,18 @@
       "target": "nsis",
       "icon": "img/ic-icon.ico",
       "requestedExecutionLevel": "requireAdministrator",
-      "executableName": "icoptimizer-0.2.6"
+      "executableName": "icoptimizer"
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
-    }
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": true 
+    },
+    "extraFiles": [
+      {
+        "from": "debug/launch-debug.vbs",
+        "to": "debug/launch-debug.vbs"
+      }
+    ]
   }
 }

@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 const { promisify } = require('util');
 const execAsync = promisify(exec);
-
+const { join } = require('path');
 let isRunning = false;
 
 async function runCommand(command) {
@@ -40,6 +40,12 @@ const operationHandlers = {
     'sfc-scan': () => runCommand('sfc /scannow'),
     'disable-startup-programs': disableStartupPrograms,
     'check-programs': checkProblematicPrograms,
+    'disable-win-update' : disableUpdate,
+    'disable-gamebar' : disableGameBar,
+    'change-powerplan' : changePowerplan,
+    'disable-onedrive' : disableOneDrive,
+    'clear-update' : clearUpdate,
+    // 'create-netfile' : netfileCreate(),
 };
 
 async function executeOptimizations(operations, currentOperationCallback) {
@@ -105,10 +111,62 @@ async function disableStickyKeys() {
     return results.join('\n');
 }
 
+async function disableUpdate() {
+    const commands = [
+        'sc config wuauserv start= disabled',
+        'net stop wuauserv',
+        'reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v NoAutoUpdate /t REG_DWORD /d 1 /f'
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.join('\n');
+}
+
+async function clearUpdate() {
+    const commands = [
+        'net stop wuauserv',
+        'net stop bits',
+        'rd /s /q C:\\Windows\\SoftwareDistribution',
+        'net start wuauserv',
+        'net start bits'
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.join('\n');
+}
+
+
+async function disableGameBar() {
+    const commands = [
+        'reg add "HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\GameDVR" /v AppCaptureEnabled /t REG_DWORD /d 0 /f',
+        'reg add "HKEY_CURRENT_USER\\System\\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 0 /f',
+        'reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f'
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.join('\n');
+}
+
+async function disableOneDrive() {
+    const commands = [
+        'taskkill /f /im OneDrive.exe',
+        'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\OneDrive" /v DisableFileSyncNGSC /t REG_DWORD /d 1 /f',
+        'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\OneDrive" /v DisableLibrariesDefaultSaveToOneDrive /t REG_DWORD /d 1 /f'
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.join('\n');
+}
+
+async function changePowerplan() {
+    const commands = [
+        'powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c',
+        'powercfg /change standby-timeout-ac 0',
+        'powercfg /change monitor-timeout-ac 0'
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.join('\n');
+}
+
 async function tcpEdit() {
     const commands = [
         'netsh int tcp set global autotuninglevel=normal',
-        'netsh int tcp set global chimney=enabled',
         'netsh int tcp set global dca=enabled',
         'netsh int tcp set global netdma=enabled',
         'netsh int tcp set global ecncapability=enabled,'
@@ -142,11 +200,11 @@ async function clearTempAndBin() {
 }
 
 async function disableStartupPrograms() {
-    const programsToDisable = ['Microsoft Teams', 'Medal', 'Smartphone Link', 'Skype', 'Discord', 'Steam', 'Epic Games Launcher', 'Spotify', 'Dropbox', 'OneDrive', 'Google Drive', 'Adobe Creative Cloud', 'Origin', 'Slack', 'Zoom'];
+    const programs = ['Microsoft Teams', 'Medal', 'Smartphone Link', 'Skype', 'Discord', 'Steam', 'Epic Games Launcher', 'Spotify', 'Dropbox', 'OneDrive', 'Google Drive', 'Adobe Creative Cloud', 'Origin', 'Slack', 'Zoom'];
     const registryKey = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-    const results = await Promise.all(programsToDisable.map(program => runCommand(`reg delete "${registryKey}" /v "${program}" /f`)));
+    const results = await Promise.all(programs.map(p => new Promise(r => require('child_process').exec(`reg delete "${registryKey}" /v "${p}" /f`, (e, o) => r(e ? `Failed: ${p} - ${e.message}` : `Disabled: ${p}`)))));
     return results.join('\n');
-}
+  }  
 
 async function checkProblematicPrograms() {
     const problematicKeywords = ['AhnLab', 'AVG', 'Avast', 'Bitdefender', 'F-Secure', 'G Data', 'K7', 'Kaspersky', 'Malwarebytes', 'McAfee', 'Norton', 'RAV', 'Surfshark', 'TotalAV', 'Trend Micro', 'Vba32', 'Webroot', 'ZoneAlarm'];
@@ -165,13 +223,14 @@ async function checkProblematicPrograms() {
         } else {
             console.log("No potentially problematic programs found.");
         }
-        
+ 
         return foundPrograms.join('\n') || "No potentially problematic programs found.";
     } catch (error) {
         console.error('Error executing WMIC command:', error);
         return 'Error checking installed programs';
     }
 }
+
 
 function stopOperations() {
     if (isRunning) {

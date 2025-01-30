@@ -2,6 +2,11 @@ const { ipcRenderer } = require('electron');
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded');
+
+    document.getElementById('launch-debug').addEventListener('click', () => {
+        console.log('Debug requested'); 
+        ipcRenderer.send('launch-debug');
+    });
     
     const executeButton = document.getElementById('execute-operations');
     const closeButton = document.getElementById('close-program');
@@ -98,3 +103,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+

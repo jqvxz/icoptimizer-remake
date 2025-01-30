@@ -10,18 +10,26 @@
 <body>
     <div class="header">
         <div class="version-info">
-            <span>Version: b-0.2.6 pre</span>
+            <span>Version: b-0.2.7 pre</span>
             <a href="https://github.com/jqvxz/icoptimizer-remake" target="_blank"><span>Github</span></a>
             <a href="https://discord.gg/enf9WY5pPn" target="_blank"><span>Discord</span></a>
+            <a href="#" id="launch-debug"><span>Launch Debug</span></a>
         </div>
         <img class="header-image" src="img/icopt.svg">
         <div class="dark-mode-toggle">
             <span>Dark Mode</span>
-            <label class="switch"> 
+            <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider"></span>
             </label>
         </div>
+        <div class="toggle-all">
+            <span>Toggle All</span>
+            <label class="switch"> 
+                <input type="checkbox" id="toggle-all" checked>
+                <span class="slider"></span>
+            </label>
+        </div>        
     </div>
     
     <div class="container">
@@ -93,7 +101,21 @@
                 </label>
             </div>
             <div class="item">
-                <span>Restart Explorer.exe<img class="info-icon" src="img/info.svg" title="Might crash the program on w11 pcs"></span>
+                <span>Disable Windows auto update</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-win-update" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Disable XBox Game bar</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-gamebar" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Restart Explorer.exe</span>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="restart-explorer" checked>
                     <span class="slider"></span>
@@ -121,6 +143,13 @@
                 </label>
             </div>
             <div class="item">
+                <span>Clear Windows Update Cache</span> 
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="clear-update" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
                 <span>Use SFC</span>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="sfc-scan" checked>
@@ -135,12 +164,26 @@
                 </label>
             </div>
             <div class="item">
+                <span>Disable OneDrive</span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-onedrive" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                <span>Change Power plan<img class="info-icon" src="img/info.svg" title="Will change the power plan to max performance not recommended on office devices"></span>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="changePowerplan" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
                 <span>Check for problematic programs<img class="info-icon" src="img/info.svg" title="Still in development (might work)"></span> <!-- OUTPUT ONLY AS ALERT-->
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="check-programs" checked>
                     <span class="slider"></span>
                 </label>
-            </div>
+            </div> 
         </div>
         <div class="right-panel">
             <div class="execute-header">
@@ -195,6 +238,13 @@
                     <span class="slider"></span>
                 </label>
             </div>
+            <div class="item">
+                <span>Create network diagnose file<img class="info-icon" src="img/soon.svg" title="Will release soon"></span> <!-- ADD THIS-->
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="create-netfile" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
     </div>
 
@@ -211,14 +261,17 @@
         <p><span id="current-operation">None</span></p>
     </div>
 
-    <button style="display: none;" id="uncheckButton">Uncheck All</button> <!--Will be implemented in the next update-->
-    <script>
-        function uncheckAll() {
-            document.querySelectorAll('input[type="checkbox"]:not(#dark-mode-toggle)').forEach(checkbox => {
-                checkbox.checked = false;
+    <script> // This will soon be moved to the main
+        function toggleAll() {
+            const toggleAllCheckbox = document.getElementById('toggle-all');
+            const isChecked = toggleAllCheckbox.checked;
+
+            document.querySelectorAll('input[type="checkbox"]:not(#dark-mode-toggle):not(#toggle-all)').forEach(checkbox => {
+                checkbox.checked = isChecked;
             });
         }
-        document.getElementById('uncheckButton').addEventListener('click', uncheckAll);
+
+        document.getElementById('toggle-all').addEventListener('click', toggleAll);
     </script>
 
 </body>
