@@ -1,4 +1,4 @@
-
+' Future versions will include debug launch natively
 Set objShell = CreateObject("Shell.Application")
 Set objFSO = CreateObject("Scripting.FileSystemObject")
 
