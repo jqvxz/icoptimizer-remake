@@ -34,7 +34,8 @@ icoptimizer remake is an Electron-based project that recreates the previously ma
 
 # Debug (Beta)
 
-- Download the [icoptimizer debug launch file](https://github.com/jqvxz/icoptimizer-remake/blob/main/debug/icoptimizer-debug.vbs)
+- 0.2.7 does include this natively
+- Download the [icoptimizer debug launch file](https://github.com/jqvxz/icoptimizer-remake/blob/main/debug/launch-debug.vbs)
 - Update the paths in the vbs file to match your file location
 - Run the vbs to see console output when using icoptimizer
 
