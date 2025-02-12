@@ -46,7 +46,7 @@ For a more lightweight version use the original icoptimizer (might be outdated)
 # UI
 ![ui-0.3.0](https://github.com/user-attachments/assets/8c0c9471-ba71-44f0-b1d5-76c358453ace)
 
-# Disclaimer / Haftungsausschluss
+# Disclaimer
 
 This software is provided **"as is"** without any guarantees or warranties of any kind. By using this software, you agree to the following:
 
