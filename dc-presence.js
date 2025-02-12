@@ -1,22 +1,22 @@
 const { app } = require('electron');
 const { Client } = require('discord-rpc');
 
+// Initialize Discord Rich Presence client
 const CLIENT_ID = '1312025186861842502'; 
-
 const rpc = new Client({ transport: 'ipc' });
 
 rpc.on('ready', () => {
     console.log('Discord Rich Presence is ready');
 
-    // Set activity
+    // Set activity details and buttons
     rpc.setActivity({
         details: "Windows optimizer by jqvon",
-        state: "Version 0.2.7 - pre", 
+        state: "Version 0.2.8 - pre", 
         startTimestamp: new Date(),
         largeImageKey: 'app_icon', 
         largeImageText: 'icoptimizer',
         buttons: [
-            { label: "Website", url: "https://jqvxz.github.io/web/" }, 
+            { label: "Discord", url: "https://discord.gg/enf9WY5pPn/" }, 
             { label: "Source", url: "https://github.com/jqvxz/icoptimizer-remake/" }, 
         ]
     });
@@ -24,12 +24,15 @@ rpc.on('ready', () => {
     console.log('Rich Presence set');
 });
 
+// Handle errors 
 rpc.on('error', (error) => {
-    console.error('An error occurred with Discord RPC:', error);
+    console.error('Could not set Rich Presence:', error);
 });
 
+// Log in to Discord
 rpc.login({ clientId: CLIENT_ID }).catch(console.error);
 
+// Clean before quitting
 app.on('before-quit', () => {
     rpc.destroy();
 });

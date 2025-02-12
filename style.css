@@ -1,4 +1,3 @@
-/* styles.css */
 * {
     user-select: none;
     -webkit-user-select: none;
@@ -11,14 +10,15 @@ body {
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
     overflow-x: hidden;
+    color: rgb(8, 8, 8);
 }
-
 
 .header {
     text-align: center;
     padding: 20px;
     border-bottom: 2px solid #ddd;
     font-size: 20px;
+    background-color: rgb(240, 240, 240);
 }
 
 .header .version-info {
@@ -30,6 +30,7 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
+    background-color: rgb(240, 240, 240);
 }
 
 .footer-wrapper {
@@ -46,51 +47,52 @@ body {
     pointer-events: auto;
 }
 
-
 .execute-button {
-    background-color: #486cd8;
+    background-color: transparent;
     padding: 10px 10px;
-    border: 1px solid#486cd8;
+    border: 2px solid#006340;
     width: 200px;
     margin-right: 10px;
     transition: 0.4s;
-    color: white;
+    color: black;
 }
 
 .execute-button:hover {
-    background-color: transparent;
-    color: black;
+    background-color: #006340;
+    color: rgb(240, 240, 240);
 }
 
 .cancel-button {
     background-color: transparent;
-    border: 1px solid#da8f27;
+    border: 2px solid#da8f27;
     padding: 10px 10px;
     margin-left: 10px;
     width: 200px;
     transition: 0.4s;
+    color: rgb(8, 8, 8);
 }
 
 .cancel-button:hover {
     background-color: #da8f27;
-    color: white;
+    color: rgb(240, 240, 240);
 }
 
 .restart-button{
     margin-left: auto;
-    border: 1px solid#486cd8;
+    border: 2px solid#006340;
     padding: 10px 10px;
     background-color: transparent;
     transition: 0.4s;
+    color: rgb(8, 8, 8);
 }
 
 .restart-button:hover {
-    background-color: #486cd8;
-    color: white;
+    background-color: #006340;
+    color: rgb(240, 240, 240);
 }
 
 .break-button {
-    border: 1px solid#d53a3a;
+    border: 2px solid#d53a3a;
     padding: 10px 10px;
     background-color: transparent;
     transition: 0.4s;
@@ -98,7 +100,7 @@ body {
 
 .break-button:hover {
     background-color: #d53a3a;
-    color: white;
+    color: rgb(240, 240, 240);
 }
 
 .execute-header {
@@ -121,6 +123,8 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     gap: 20px;
+    border-radius: 15px;
+    background-color: rgb(240, 240, 240);
 }
 
 .item {
@@ -160,7 +164,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #486cd8; 
+    background-color: #006340;
     border-radius: 20px;
     transition: 0.4s;
 }
@@ -178,11 +182,11 @@ body {
 }
 
 input:checked + .slider {
-    background-color: #486cd8; 
+    background-color: #006340; 
 }
 
 input:not(:checked) + .slider {
-    background-color: #ccc;
+    background-color: #5e5d5d
 }
 
 input:checked + .slider:before {
@@ -204,10 +208,10 @@ input:not(:checked) + .slider:before {
 }
 
 .current-opt-holder {
-    background-color: #486cd8;
-    color: white;
+    background-color: #006340;
+    color: rgb(240, 240, 240);
     padding: 10px 10px;
-    border: 1px solid#486cd8;
+    border: 1px solid#006340;
     width: 200px;
     margin-right: 5px;
 }
@@ -226,7 +230,7 @@ input:not(:checked) + .slider:before {
 
 a {
     text-decoration: underline;
-    color: black;
+    color: rgb(8, 8, 8);
 }
 
 .dark-mode-toggle {
@@ -257,7 +261,7 @@ a {
 
 body.dark-mode {
     background-color: #121212;
-    color: #ffffff;
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .header, 
@@ -277,11 +281,15 @@ body.dark-mode .info-icon {
 }
 
 body.dark-mode .item span {
-    color: #ffffff;
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .cancel-button {
-    color: #ffffff;
+    color: rgb(240, 240, 240);
+}
+
+body.dark-mode .execute-button {
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .current-opt-holder {
@@ -299,68 +307,25 @@ body.dark-mode .header-image {
 }
 
 body.dark-mode .version-info a {
-    color: #ffffff;
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .restart-button {
-    color: white;
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .restart-button:hover {
-    color: white;
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .break-button {
-    color: white;
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .break-button:hover {
-    color: white;
+    color: rgb(240, 240, 240);
 }
 
 body.dark-mode .execute-button:hover {
-    color: white;
-}
-
-/* Attemp for better output */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  
-  /* For perfect centering */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 400px;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#close-modal {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 15px;
-}
-
-#close-modal:hover {
-  background-color: #45a049;
+    color: rgb(240, 240, 240);
 }
