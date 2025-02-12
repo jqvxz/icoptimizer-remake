@@ -26,7 +26,7 @@ npm start
 
 # VirusTotal scan results
 
-- [VirusTotal scan](https://www.virustotal.com/gui/file/e11e1eee3131ef6b49abe9bda5cd97a97a731988963736d6971498625b4e5b6e)
+- [VirusTotal scan](https://www.virustotal.com/gui/file/8e179419b79df9602c73c439e1e2eaec110fae14dcf04c2012c52e383c6c860b)
 - Bkav Pro detects the program as a "W32.AIDetectMalware" please dm if you can help me
 
 # What is this about?
@@ -44,7 +44,7 @@ You can use icoptimizer to optimize your in-game performance and reduce latency.
 For a more lightweight version use the original icoptimizer (might be outdated)
 
 # UI
-![ui](https://github.com/user-attachments/assets/a53af16f-2daf-4fb9-ac87-14c1e3177578)
+![ui-0.3.0](https://github.com/user-attachments/assets/8c0c9471-ba71-44f0-b1d5-76c358453ace)
 
 # Disclaimer / Haftungsausschluss
 
