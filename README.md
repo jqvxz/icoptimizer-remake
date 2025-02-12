@@ -32,9 +32,7 @@ npm start
 # What is this about?
 icoptimizer remake is an Electron-based project that recreates the previously made icoptimizer while utilizing a better UI and more customizability options.
 
-# Debug (Beta)
-
-- 0.2.7 does include this natively
+# Debug 
 - Download the [icoptimizer debug launch file](https://github.com/jqvxz/icoptimizer-remake/blob/main/debug/launch-debug.vbs)
 - Update the paths in the vbs file to match your file location
 - Run the vbs to see console output when using icoptimizer
