@@ -27,7 +27,7 @@ npm start
 # VirusTotal scan results
 
 - [VirusTotal scan](https://www.virustotal.com/gui/file/8e179419b79df9602c73c439e1e2eaec110fae14dcf04c2012c52e383c6c860b)
-- Bkav Pro detects the program as a "W32.AIDetectMalware" please dm if you can help me
+- Bkav Pro detects the program as a "W32.AIDetectMalware" please dm if you can help me (false positive)
 
 # What is this about?
 icoptimizer remake is an Electron-based project that recreates the previously made icoptimizer while utilizing a better UI and more customizability options.
