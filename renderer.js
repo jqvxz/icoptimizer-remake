@@ -1,5 +1,10 @@
 const { ipcRenderer } = require('electron');
 
+// New variables for tracking progress and time
+let totalOperations = 0;
+let currentOperationIndex = 0;
+let startTime;
+
 // Wait for DOM to load and set up UI event listeners
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded');
@@ -29,14 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Selected operations:', selectedOperations)
 
         if (selectedOperations.length === 0) {
-            alert('Please select at least one option')
-            return
+            ipcRenderer.send('show-custom-alert', {
+                title: 'Information',
+                message: 'Please select at least one option'
+            });
+            return;
         }
+
+        // Initialize progress tracking
+        totalOperations = selectedOperations.length;
+        currentOperationIndex = 0;
 
         // Show operation status and disable button
         currentOperationContainer.style.display = 'block'
-        currentOperationSpan.textContent = 'Executing operations now'
+        currentOperationSpan.textContent = 'Executing operations now (0%)'
         executeButton.disabled = true
+
+        // Record the start time
+        startTime = new Date();
 
         console.log('Sending execute-operations to main process')
         ipcRenderer.send('execute-operations', selectedOperations)
@@ -73,7 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
 ipcRenderer.on('current-operation', (event, operation) => {
     console.log('Received current-operation:', operation)
     const currentOperationSpan = document.getElementById('current-operation')
-    currentOperationSpan.textContent = operation
+    currentOperationIndex++;
+    const progress = Math.round((currentOperationIndex / totalOperations) * 100);
+    currentOperationSpan.textContent = `${operation} (${progress}%)`
 })
 
 // Handle operation results
@@ -83,7 +100,15 @@ ipcRenderer.on('operation-results', (event, results) => {
     const currentOperationContainer = document.getElementById('current-operation-container')
     executeButton.disabled = false
     currentOperationContainer.style.display = 'none'
-    alert('Please restart your PC for all the changes to take effect') // Adding different output for interrupted
+
+    // Calculate execution time
+    const endTime = new Date();
+    const executionTime = ((endTime - startTime) / 1000).toFixed(2);
+
+    ipcRenderer.send('show-custom-alert', {
+        title: 'Information',
+        message: `Finished executing operations or interrupted in ${executionTime}s. Please restart.`
+    });
 })
 
 // Handle operation errors
@@ -93,7 +118,10 @@ ipcRenderer.on('operation-error', (event, error) => {
     const currentOperationContainer = document.getElementById('current-operation-container')
     executeButton.disabled = false
     currentOperationContainer.style.display = 'none'
-    alert('An error occurred while executing')
+    ipcRenderer.send('show-custom-alert', {
+        title: 'Warning',
+        message: 'There was an error while executing operations'
+    });
 })
 
 // Initialize dark mode settings
@@ -111,9 +139,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (darkModeToggle.checked) {
             document.body.classList.add('dark-mode')
             localStorage.setItem('dark-mode', 'enabled')
+            console.log('Dark Mode enabled')
         } else {
             document.body.classList.remove('dark-mode')
             localStorage.setItem('dark-mode', 'disabled')
+            console.log('Dark Mode disabled')
         }
     })
 })

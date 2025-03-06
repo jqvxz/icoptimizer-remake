@@ -1,7 +1,7 @@
 {
   "name": "icoptimizer",
   "productName": "icoptimizer",
-  "version": "0.3.0",
+  "version": "1.0.2",
   "description": "icoptimizer for windows",
   "main": "main.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "discord-rpc": "^4.0.1",
+    "electron-custom-notifications": "^8.0.5",
     "network-speed": "^2.1.1",
     "ping": "^0.4.4"
   },
@@ -35,7 +36,7 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "perMachine": true 
+      "perMachine": true
     },
     "extraFiles": [
       {

@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, Menu, nativeImage, shell } = require('elect
 const path = require('path');
 const { exec } = require('child_process');
 const { executeOptimizations } = require('./optimizations');
+const { setGlobalStyles, createNotification } = require('electron-custom-notifications');
 
 let mainWindow
 
@@ -80,7 +81,7 @@ if (!Locked) {
 
             console.log('Starting executeOptimizations')
             const results = await executeOptimizations(operations, updateCurrentOperation)
-            console.log('Optimizations completed, sending results')
+            console.log('Optimizations completed')
             event.reply('operation-results', results)
         } catch (error) {
             console.error('Error during optimizations:', error)
@@ -131,19 +132,62 @@ if (!Locked) {
 
     // Handle debug mode launch
     ipcMain.on('launch-debug', () => {
-        const vbsPath = path.join(__dirname, 'debug', 'launch-debug.vbs')
+        let vbsPath;
+        if (app.isPackaged) {
+            vbsPath = path.join(app.getPath('exe'), '..', 'debug', 'launch-debug.vbs');
+        } else {
+            vbsPath = path.join(__dirname, 'debug', 'launch-debug.vbs');
+        }
+        console.log('Attempting to execute VBS script at:', vbsPath);
         exec(`cscript "${vbsPath}"`, (error, stdout, stderr) => {
             if (error) {
-                console.error(`Error executing VBS script: ${error.message}`)
-                return
+                console.error(`Error executing VBS script: ${error.message}`);
+                return;
             }
             if (stderr) {
-                console.error(`VBS script stderr: ${stderr}`)
-                return
+                console.error(`VBS script stderr: ${stderr}`);
+                return;
             }
-            console.log(`VBS script stdout: ${stdout}`)
-        })
-    })
+            console.log(`VBS script stdout: ${stdout}`);
+        });
+    });  
+
+    // Custom alert window
+    function showCustomAlert(title, message) {
+        const alertWindow = new BrowserWindow({
+            parent: mainWindow,
+            modal: true,
+            show: false,
+            width: 700,
+            height: 200,
+            frame: false,
+            transparent: true,
+            resizable: false,
+            minimizable: false,
+            maximizable: false,
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false
+            }
+        });
+    
+        alertWindow.loadFile(path.join(__dirname, 'alert.html'));
+    
+        alertWindow.webContents.on('did-finish-load', () => {
+            alertWindow.webContents.executeJavaScript(`
+                document.getElementById('alert-title').textContent = ${JSON.stringify(title)};
+                document.getElementById('alert-message').textContent = ${JSON.stringify(message)};
+                document.getElementById('ok-button').addEventListener('click', () => {
+                    window.close();
+                });
+            `);
+            alertWindow.show();
+        });
+    }    
+
+    ipcMain.on('show-custom-alert', (event, { title, message }) => {
+        showCustomAlert(title, message);
+    });
 
     function runCommand(command) {
         exec(command, (error) => {

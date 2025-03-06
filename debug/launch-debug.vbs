@@ -18,8 +18,8 @@ Function TryLaunch(path)
     On Error Goto 0
 End Function
 
-' Possible paths - nr 1 should work, if not please remove icoptimizer entirely from your pc and reinstall
-' When removing delete the entire file structure
+' Possible paths
+' Adjust if you have the programm installed somewhere else
 paths = Array( _
     "C:\Program Files\icoptimizer\icoptimizer.exe", _
     "C:\Users\%username%\AppData\Local\Programs\icoptimizer.exe", _

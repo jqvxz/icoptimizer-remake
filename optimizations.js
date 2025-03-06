@@ -313,3 +313,4 @@ function stopOperations() {
 }
 
 module.exports = { executeOptimizations, stopOperations };
+
