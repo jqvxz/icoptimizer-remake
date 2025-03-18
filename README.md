@@ -29,11 +29,6 @@ npm start
 - [VirusTotal scan](https://www.virustotal.com/gui/file/8e179419b79df9602c73c439e1e2eaec110fae14dcf04c2012c52e383c6c860b)
 - Bkav Pro detects the program as a "W32.AIDetectMalware" please dm if you can help me (false positive)
 
-# Debug 
-- Download the [icoptimizer debug launch file](https://github.com/jqvxz/icoptimizer-remake/blob/main/debug/launch-debug.vbs)
-- Update the paths in the vbs file to match your file location
-- Run the vbs to see console output when using icoptimizer
-
 # Why?
 icoptimizer was created to improve Windows performance while maintaining almost all of its functionality.
 I developed the program because other optimizers are either ineffective or overly complicated.
