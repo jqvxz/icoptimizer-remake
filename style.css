@@ -31,15 +31,13 @@ body {
     align-items: center;
     padding: 20px;
     background-color: rgb(240, 240, 240);
+    position: relative;
 }
 
 .footer-wrapper {
     display: flex;
     justify-content: center;
     flex-grow: 1;
-}
-
-.footer-wrapper {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -47,14 +45,22 @@ body {
     pointer-events: auto;
 }
 
-.execute-button {
+.execute-button, .cancel-button {
     background-color: transparent;
     padding: 10px 10px;
-    border: 2px solid#006340;
     width: 200px;
-    margin-right: 10px;
     transition: 0.4s;
     color: black;
+}
+
+.execute-button {
+    border: 2px solid #006340;
+    margin-right: 10px;
+}
+
+.cancel-button {
+    border: 2px solid #da8f27;
+    margin-left: 10px;
 }
 
 .execute-button:hover {
@@ -62,40 +68,30 @@ body {
     color: rgb(240, 240, 240);
 }
 
-.cancel-button {
-    background-color: transparent;
-    border: 2px solid#da8f27;
-    padding: 10px 10px;
-    margin-left: 10px;
-    width: 200px;
-    transition: 0.4s;
-    color: rgb(8, 8, 8);
-}
-
 .cancel-button:hover {
     background-color: #da8f27;
     color: rgb(240, 240, 240);
 }
 
-.restart-button{
-    margin-left: auto;
-    border: 2px solid#006340;
+.restart-button, .break-button {
     padding: 10px 10px;
     background-color: transparent;
     transition: 0.4s;
     color: rgb(8, 8, 8);
 }
 
-.restart-button:hover {
-    background-color: #006340;
-    color: rgb(240, 240, 240);
+.restart-button {
+    margin-left: auto;
+    border: 2px solid #006340;
 }
 
 .break-button {
-    border: 2px solid#d53a3a;
-    padding: 10px 10px;
-    background-color: transparent;
-    transition: 0.4s;
+    border: 2px solid #d53a3a;
+}
+
+.restart-button:hover {
+    background-color: #006340;
+    color: rgb(240, 240, 240);
 }
 
 .break-button:hover {
@@ -109,28 +105,65 @@ body {
 
 .container {
     display: flex;
-    justify-content: space-around;
     padding: 20px;
+    gap: 20px;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-.left-panel,
-.right-panel {
+.left-panel {
     border: 2px solid #ddd;
     padding: 20px;
-    width: 40%;
-    height: auto;
+    border-radius: 15px;
+    background-color: rgb(240, 240, 240);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 20px;
+    flex: 1;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.right-panel {
+    border: 2px solid #ddd;
+    padding: 20px;
     border-radius: 15px;
     background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    /* flex: 1; REMOVE THIS */
+}
+
+.third-panel {
+    border: 2px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    flex: 1; /* Keep this so it occupies remaining space*/
 }
 
 .item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+}
+
+.line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #ddd;
+    margin: 0 10px;
 }
 
 .item span {
@@ -138,6 +171,12 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 5px;
+}
+
+.text-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .switch {
@@ -149,7 +188,7 @@ body {
 }
 
 .switch input {
-    display: none; 
+    display: none;
 }
 
 .header-image {
@@ -182,11 +221,11 @@ body {
 }
 
 input:checked + .slider {
-    background-color: #006340; 
+    background-color: #006340;
 }
 
 input:not(:checked) + .slider {
-    background-color: #5e5d5d
+    background-color: #5e5d5d;
 }
 
 input:checked + .slider:before {
@@ -196,7 +235,6 @@ input:checked + .slider:before {
 input:not(:checked) + .slider:before {
     transform: translateX(0);
 }
-
 
 #current-operation-container {
     width: 100%;
@@ -211,7 +249,7 @@ input:not(:checked) + .slider:before {
     background-color: #006340;
     color: rgb(240, 240, 240);
     padding: 10px 10px;
-    border: 1px solid#006340;
+    border: 1px solid #006340;
     width: 200px;
     margin-right: 5px;
 }
@@ -241,7 +279,6 @@ a {
     top: 60px;
 }
 
-/* Dark Mode */
 .dark-mode-toggle,
 .toggle-all {
     display: flex;
@@ -265,13 +302,10 @@ body.dark-mode {
 }
 
 body.dark-mode .header, 
-body.dark-mode .footer {
-    background-color: #1e1e1e;
-    border-color: #333;
-}
-
+body.dark-mode .footer,
 body.dark-mode .left-panel, 
-body.dark-mode .right-panel {
+body.dark-mode .right-panel,
+body.dark-mode .third-panel {
     background-color: #1e1e1e;
     border-color: #333;
 }
@@ -280,15 +314,11 @@ body.dark-mode .info-icon {
     filter: invert(1);
 }
 
-body.dark-mode .item span {
-    color: rgb(240, 240, 240);
-}
-
-body.dark-mode .cancel-button {
-    color: rgb(240, 240, 240);
-}
-
-body.dark-mode .execute-button {
+body.dark-mode .item span,
+body.dark-mode .cancel-button,
+body.dark-mode .execute-button,
+body.dark-mode .restart-button,
+body.dark-mode .break-button {
     color: rgb(240, 240, 240);
 }
 
@@ -310,22 +340,8 @@ body.dark-mode .version-info a {
     color: rgb(240, 240, 240);
 }
 
-body.dark-mode .restart-button {
-    color: rgb(240, 240, 240);
+body.dark-mode .line {
+    background-color: #333;
 }
 
-body.dark-mode .restart-button:hover {
-    color: rgb(240, 240, 240);
-}
 
-body.dark-mode .break-button {
-    color: rgb(240, 240, 240);
-}
-
-body.dark-mode .break-button:hover {
-    color: rgb(240, 240, 240);
-}
-
-body.dark-mode .execute-button:hover {
-    color: rgb(240, 240, 240);
-}

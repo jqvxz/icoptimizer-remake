@@ -10,7 +10,7 @@
 <body>
     <div class="header">
         <div class="version-info">
-            <span>Version 1.0.2</span>
+            <span>Version 1.1.4</span>
             <a href="https://github.com/jqvxz/icoptimizer-remake" target="_blank"><span>Github</span></a>
             <a href="https://discord.gg/enf9WY5pPn" target="_blank"><span>Discord</span></a>
             <a href="#" id="launch-debug"><span title="Fixed the issue where when launching the debug mode the program was attempting to start the vbs file at the wrong location">Launch Debug</span></a>
@@ -39,6 +39,7 @@
             </div>
             <div class="item">
                 <span>Change Power plan<img class="info-icon" src="img/info.svg" title="Will change the power plan to max performance not recommended on office devices"></span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="changePowerplan" checked>
                     <span class="slider"></span>
@@ -46,13 +47,23 @@
             </div>
             <div class="item">
                 <span>Check for problematic programs</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="check-programs" checked>
                     <span class="slider"></span>
                 </label>
             </div>
             <div class="item">
+                <span>Clean Windows Registery<img class="info-icon" src="img/info.svg" title="It is recommended to backup your reg before using this option"></span>
+                <div class="line"></div>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="clean-registery" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
                 <span>Clear Windows Temp / Bin</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="clear-temp-bin" checked>
                     <span class="slider"></span>
@@ -60,6 +71,7 @@
             </div>
             <div class="item">
                 <span>Clear Windows Update Cache</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="clear-update" checked>
                     <span class="slider"></span>
@@ -67,13 +79,23 @@
             </div>
             <div class="item">
                 <span>Disable Compatibility Assistant</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-compatibility" checked>
                     <span class="slider"></span>
                 </label>
             </div>
             <div class="item">
+                <span>Disable Windows Copilot</span>
+                <div class="line"></div>
+                <label class="switch">
+                    <input type="checkbox" class="checkbox" id="disable-copilot" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
                 <span>Disable Cortana</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-cortana" checked>
                     <span class="slider"></span>
@@ -81,6 +103,7 @@
             </div>
             <div class="item">
                 <span>Disable Error Report</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-error-report" checked>
                     <span class="slider"></span>
@@ -88,6 +111,7 @@
             </div>
             <div class="item">
                 <span>Disable OneDrive</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-onedrive" checked>
                     <span class="slider"></span>
@@ -95,6 +119,7 @@
             </div>
             <div class="item">
                 <span>Disable Remote Management service</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-remote-management" checked>
                     <span class="slider"></span>
@@ -102,6 +127,7 @@
             </div>
             <div class="item">
                 <span>Disable Remote Registry service</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-registry" checked>
                     <span class="slider"></span>
@@ -109,6 +135,7 @@
             </div>
             <div class="item">
                 <span>Disable Sticky keys</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-sticky-keys" checked>
                     <span class="slider"></span>
@@ -116,6 +143,7 @@
             </div>
             <div class="item">
                 <span>Disable Windows Telemetry</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-telemetry" checked>
                     <span class="slider"></span>
@@ -123,6 +151,7 @@
             </div>
             <div class="item">
                 <span>Disable Windows auto update</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-win-update" checked>
                     <span class="slider"></span>
@@ -130,6 +159,7 @@
             </div>
             <div class="item">
                 <span>Disable XBox Game bar</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-gamebar" checked>
                     <span class="slider"></span>
@@ -137,6 +167,7 @@
             </div>
             <div class="item">
                 <span>Disable auto start</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disable-startup-programs" checked>
                     <span class="slider"></span>
@@ -144,6 +175,7 @@
             </div>
             <div class="item">
                 <span>Disk Cleanup</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="disk-cleanup" checked>
                     <span class="slider"></span>
@@ -151,6 +183,7 @@
             </div>
             <div class="item">
                 <span>Kill useless apps</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="kill-apps" checked>
                     <span class="slider"></span>
@@ -158,6 +191,7 @@
             </div>
             <div class="item">
                 <span>Modify Windows search</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="modify-search" checked>
                     <span class="slider"></span>
@@ -165,6 +199,7 @@
             </div>
             <div class="item">
                 <span>Restart Audiosrv</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="restart-audiosrv" checked>
                     <span class="slider"></span>
@@ -172,6 +207,7 @@
             </div>
             <div class="item">
                 <span>Restart Explorer.exe</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="restart-explorer" checked>
                     <span class="slider"></span>
@@ -179,71 +215,106 @@
             </div>
             <div class="item">
                 <span>Use SFC</span>
+                <div class="line"></div>
                 <label class="switch">
                     <input type="checkbox" class="checkbox" id="sfc-scan" checked>
                     <span class="slider"></span>
                 </label>
             </div>
         </div>
-        <div class="right-panel">
-            <div class="execute-header">
-                <p>Windows Ping / Network optimization</p>
+        <div class="right-container">
+            <div class="right-panel">
+                <div class="execute-header">
+                    <p>Windows Ping / Network optimization</p>
+                </div>
+                <div class="item">
+                    <span>Clear ARP</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="clear-arp" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Clear DNS cache</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="clear-dns-cache" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Create network diagnose file</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="create-netfile" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Perform TCP edit</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="tcp-edit" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Release and renew ip</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="release-renew-ip" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Reset IP stack</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="reset-ip-stack" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Reset Network Adapter</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="reset-network-adapter" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Reset firewall rules<img class="info-icon" src="img/info.svg" title="Can be annoying (you have to allow for every program again)"></span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="reset-firewall" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
-            <div class="item">
-                <span>Clear ARP</span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="clear-arp" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="item">
-                <span>Clear DNS cache</span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="clear-dns-cache" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="item">
-                <span>Create network diagnose file</span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="create-netfile" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="item">
-                <span>Perform TCP edit</span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="tcp-edit" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="item">
-                <span>Release and renew ip</span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="release-renew-ip" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="item">
-                <span>Reset IP stack</span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="reset-ip-stack" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="item">
-                <span>Reset Network Adapter</span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="reset-network-adapter" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="item">
-                <span>Reset firewall rules<img class="info-icon" src="img/info.svg" title="Can be annoying (you have to allow for every program again)"></span>
-                <label class="switch">
-                    <input type="checkbox" class="checkbox" id="reset-firewall" checked>
-                    <span class="slider"></span>
-                </label>
+            <div class="third-panel">
+                <div class="execute-header">
+                    <p>Backup and Info</p>
+                </div>
+                <div class="item">
+                    <span>Backup Windows Registery</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="backup-reg" unchecked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="item">
+                    <span>Create Restore Point</span>
+                    <div class="line"></div>
+                    <label class="switch">
+                        <input type="checkbox" class="checkbox" id="create-restore" unchecked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="text-item">
+                    <p>Please make sure to select only the options you want to execute to avoid unintentionally removing functionality in certain use cases. If you want to learn more about what each option does, visit GitHub and read the source code. </p>
+                </div>
             </div>
         </div>
     </div>
@@ -265,7 +336,7 @@
         function toggleAll() {
             const toggleAllCheckbox = document.getElementById('toggle-all');
             const isChecked = toggleAllCheckbox.checked;
-            document.querySelectorAll('input[type="checkbox"]:not(#dark-mode-toggle):not(#toggle-all)').forEach(checkbox => {
+            document.querySelectorAll('input[type="checkbox"]:not(#dark-mode-toggle):not(#toggle-all):not(#backup-reg):not(#create-restore)').forEach(checkbox => {
                 checkbox.checked = isChecked;
             });
         }

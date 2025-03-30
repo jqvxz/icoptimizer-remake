@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Send restart request
     restartButton.addEventListener('click', () => {
         console.log('Restart event triggered')
-        ipcRenderer.send('restart-button')
+        ipcRenderer.send('restart-button')  
     })
 
     // Send break request

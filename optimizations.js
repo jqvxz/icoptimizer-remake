@@ -13,6 +13,7 @@ async function runCommand(command) {
         const { stdout } = await execAsync(command);
         console.log(`Command output: ${stdout}`);
         return `Successfully executed: ${command}\nOutput: ${stdout}`;
+
     } catch (error) {
         console.error(`Error executing command: ${command}\nError: ${error.message}`);
         return `Error executing command: ${command}\nError: ${error.message}`;
@@ -32,9 +33,10 @@ const operationHandlers = {
     'modify-search': () => runCommand('reg add "HKEY_CURRENT_USER\\Software\\Policies\\Microsoft\\Windows\\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f'),
     'disable-error-report': () => runCommand('reg add "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps" /v DoNotPromptForNonCriticalErrors /t REG_DWORD /d 1 /f'),
     'disable-telemetry': disableTelemetry,
-    'disable-compatibility': () => runCommand('reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\AppCompat" /v DisableUAR /t REG_DWORD /d 1 /f'),
-    'disable-registry': () => runCommand('sc config RemoteRegistry start= disabled'),
+    'disable-compatibility': () => runCommand('reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\AppData" /v DisableUAR /t REG_DWORD /d 1 /f'),
+    'disableregistry': () => runCommand('sc config RemoteRegistry start= disabled'),
     'disable-cortana': () => runCommand('reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f'),
+    'disable-copilot' : () => runCommand('reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f'),
     'disable-remote-management': () => runCommand('sc config WinRM start= disabled'),
     'disable-sticky-keys': disableStickyKeys,
     'restart-explorer': restartExplorer,
@@ -42,14 +44,17 @@ const operationHandlers = {
     'disk-cleanup': () => runCommand('start /b cleanmgr /sagerun:1'),
     'clear-temp-bin': clearTempAndBin,
     'sfc-scan': () => runCommand('sfc /scannow'),
-    'disable-startup-programs': disableStartupPrograms,
+    'disable-startup-programs': disableStartUpPrograms,
     'check-programs': checkProblematicPrograms,
-    'disable-win-update' : disableUpdate,
-    'disable-gamebar' : disableGameBar,
-    'change-powerplan' : changePowerplan,
-    'disable-onedrive' : disableOneDrive,
-    'clear-update' : clearUpdate,
-    'create-netfile' : netfileCreate,
+    'disable-win-update': disableUpdate,
+    'disable-gamebar': disableGameBar,
+    'change-powerplan': changePowerplan,
+    'disable-onedrive': disableOneDrive,
+    'clear-update': clearUpdate,
+    'create-netfile': netfileCreate,
+    'clean-registery': clearReg,
+    'create-restore': createRestorePoint,
+    'backup-reg': backupRegistry
 };
 
 // Main function to execute a list of operations
@@ -58,7 +63,6 @@ async function executeOptimizations(operations, currentOperationCallback) {
     const results = [];
     isRunning = true;
 
-    // Loop through all the operations
     for (const operation of operations) {
         if (!isRunning) {
             console.log('Script was stopped by user');
@@ -68,7 +72,6 @@ async function executeOptimizations(operations, currentOperationCallback) {
         currentOperationCallback(operation);
 
         try {
-            // Get the handler for the current operation and execute it
             const handler = operationHandlers[operation];
             if (!handler) {
                 throw new Error(`Unknown operation: ${operation}`);
@@ -76,6 +79,7 @@ async function executeOptimizations(operations, currentOperationCallback) {
             const result = await handler();
             console.log('Result:', result);
             results.push({ operation, result });
+
         } catch (error) {
             console.error(`Error while trying operation ${operation}:`, error);
             results.push({ operation, result: `Error in operation ${operation}: ${error.message}` });
@@ -143,6 +147,27 @@ async function clearUpdate() {
     ];
     const results = await Promise.all(commands.map(runCommand));
     return results.join('\n');
+}
+
+async function clearReg() {
+    const commands = [
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RecentDocs" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32\\OpenSavePidlMRU" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search\\WordWheelQuery" /f',
+        'reg delete "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TypedPaths" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Map Network Drive MRU" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MountPoints2" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\UserAssist" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "Start_TrackProgs" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "Start_TrackDocs" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "RecentDocsHistory" /f',
+        'reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Regedit" /v "LastKey" /f'
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.map(r => r.stdout).join('\n');
 }
 
 // Function to disable Game Bar
@@ -219,7 +244,7 @@ async function clearTempAndBin() {
 }
 
 // Function to disable startup programs
-async function disableStartupPrograms() {
+async function disableStartUpPrograms() {
     const programs = [
         'Microsoft Teams', 'Medal', 'Smartphone Link', 'Skype', 'Discord', 'Steam', 
         'Epic Games Launcher', 'Spotify', 'Dropbox', 'OneDrive', 'Google Drive', 
@@ -231,7 +256,7 @@ async function disableStartupPrograms() {
     ];
     const results = await Promise.all(programs.flatMap(p => 
         registryKeys.map(key => 
-            new Promise(resolve => {
+            new Promise((resolve) => {
                 require('child_process').exec(`reg delete "${key}" /v "${p}" /f`, (error, stdout, stderr) => {
                     if (error) {
                         resolve(`Failed: ${p} in ${key} - ${error.message.trim()}`);
@@ -249,21 +274,20 @@ async function disableStartupPrograms() {
 async function checkProblematicPrograms() {
     const programsToCheck = [
         'AhnLab', 'AVG', 'Avast', 'Bitdefender', 'F-Secure', 'G Data', 'K7', 
-        'Kaspersky', 'Malwarebytes', 'McAfee', 'Norton', 'RAV', 'Surfshark', 
+        'Kasper sky', 'Malwarebytes', 'McAfee', 'Norton', 'RAV', 'Surfshark', 
         'TotalAV', 'Trend Micro', 'Vba32', 'Webroot', 'ZoneAlarm'
     ];
-    const command = `powershell -Command "Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Select-Object DisplayName"`;
+    const command = `power shell -Command "Get ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Select_Object DisplayName"`;
     const output = await runCommand(command);
 
-    const installedPrograms = output.split('\n').filter(line => line.trim() !== '').map(line => line.trim());
+    const installedPrograms = output.split('\n').filter(line => line.trim() !== "").map(line => line.trim());
     const detectedPrograms = programsToCheck.filter(program => installedPrograms.some(installed => installed.includes(program)));
 
     if (detectedPrograms.length > 0) {
-        await runCommand(`powershell -Command "Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('The following programs were found: ${detectedPrograms.join(', ')}', 'icoptimizer')"`);
+        await runCommand(`power shell -Command "Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('The following programs were found: ${detectedPrograms.join(', ')}', 'icoptimizer')"`);
     }
     return detectedPrograms.join(', ');
 }
-
 
 // Function to create a network diagnostic file
 async function netfileCreate() {
@@ -299,9 +323,31 @@ async function netfileCreate() {
         }
         await fs.promises.writeFile(filePath, output);
         console.log(`Network file created at: ${filePath}`);
+
     } catch (error) {
         console.error(`Error creating network file: ${error.message}`);
     }
+}
+
+// Function to create a Windows Restore Point
+async function createRestorePoint() {
+    const commands = [
+        'power shell.exe -Command "Checkpoint-Computer -Description \'Restore Point created by icoptimizer\' -RestorePointType \'MODIFY_SETTINGS\'"'
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.map(r => r.stdout).join('\n');
+}
+
+// Function to backup the Windows registry
+async function backupRegistry() {
+    const desktopPath = path.join(os.homedir(), 'Desktop');
+    const filePath = path.join(desktopPath, 'registryBackup.reg');
+    const commands = [
+        `reg export HKLM "${filePath}" /y`,
+        `reg export HKCU "${filePath}" /y /reg:64`
+    ];
+    const results = await Promise.all(commands.map(runCommand));
+    return results.join('\n');
 }
 
 // Function to stop all ongoing operations
@@ -313,4 +359,3 @@ function stopOperations() {
 }
 
 module.exports = { executeOptimizations, stopOperations };
-
