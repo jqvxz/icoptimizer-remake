@@ -1,3 +1,5 @@
+# !
+- There are some errors in the version 1.1.4 (fixed soon)
 
 # Info
 - icoptimizer might be unstable, crash or not work since this is my first electron program
