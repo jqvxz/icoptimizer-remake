@@ -38,7 +38,7 @@ You can use icoptimizer to optimize your in-game performance and reduce latency.
 For a more lightweight version use the original icoptimizer (might be outdated)
 
 # UI
-![ui-0.3.0](https://github.com/user-attachments/assets/8c0c9471-ba71-44f0-b1d5-76c358453ace)
+![1.1.4](https://github.com/user-attachments/assets/267adaf4-d5fb-4cc9-815a-4816c411d08b)
 
 # Disclaimer
 
