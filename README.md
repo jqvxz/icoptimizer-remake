@@ -1,5 +1,5 @@
 # !
-- There are some errors in the version 1.1.4 (fixed soon)
+- I am currently working on a redesign of the program (will release in abt 2 months)
 
 # Info
 - icoptimizer might be unstable, crash or not work since this is my first electron program
