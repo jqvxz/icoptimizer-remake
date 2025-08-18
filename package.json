@@ -1,7 +1,7 @@
 {
   "name": "icoptimizer",
   "productName": "icoptimizer",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "icoptimizer for windows",
   "main": "main.js",
   "scripts": {

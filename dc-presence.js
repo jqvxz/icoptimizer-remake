@@ -11,7 +11,7 @@ rpc.on('ready', () => {
     // Set activity details and buttons
     rpc.setActivity({
         details: "Windows optimizer by jqvon",
-        state: "Version 1.1.4 - debug", 
+        state: "Version 1.1.5 - stable", 
         startTimestamp: new Date(),
         largeImageKey: 'app_icon', 
         largeImageText: 'icoptimizer',

@@ -243,7 +243,7 @@ async function clearTempAndBin() {
     return results.join('\n');
 }
 
-// Function to disable startup programs
+// Function to disable startup programs (!)
 async function disableStartUpPrograms() {
     const programs = [
         'Microsoft Teams', 'Medal', 'Smartphone Link', 'Skype', 'Discord', 'Steam', 
@@ -270,24 +270,34 @@ async function disableStartUpPrograms() {
     return results.join('\n');
 }
 
-// Function to check for anti virus programs
+// Function to check for anti virus programs (!)
 async function checkProblematicPrograms() {
     const programsToCheck = [
         'AhnLab', 'AVG', 'Avast', 'Bitdefender', 'F-Secure', 'G Data', 'K7', 
         'Kasper sky', 'Malwarebytes', 'McAfee', 'Norton', 'RAV', 'Surfshark', 
         'TotalAV', 'Trend Micro', 'Vba32', 'Webroot', 'ZoneAlarm'
     ];
-    const command = `power shell -Command "Get ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Select_Object DisplayName"`;
+    const command = `powershell -Command "`
+        + `$uninstallKeys = 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*', `
+        + `'HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*'; `
+        + `$props = Get-ItemProperty $uninstallKeys -ErrorAction SilentlyContinue | Where-Object DisplayName; `
+        + `$displayNames = $props.DisplayName | Where-Object { $_ -ne $null }; `
+        + `$displayNames -join '|'"`;
     const output = await runCommand(command);
-
-    const installedPrograms = output.split('\n').filter(line => line.trim() !== "").map(line => line.trim());
-    const detectedPrograms = programsToCheck.filter(program => installedPrograms.some(installed => installed.includes(program)));
-
+    const installedPrograms = output.split('|').filter(Boolean).map(p => p.trim());
+    
+    const detectedPrograms = programsToCheck.filter(program => 
+        installedPrograms.some(installed => 
+            installed.toLowerCase().includes(program.toLowerCase())
+        )
+    );
     if (detectedPrograms.length > 0) {
-        await runCommand(`power shell -Command "Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('The following programs were found: ${detectedPrograms.join(', ')}', 'icoptimizer')"`);
+        await runCommand(`powershell -Command "Add-Type -AssemblyName PresentationFramework; `
+            + `[System.Windows.MessageBox]::Show('Detected programs: $(${JSON.stringify(detectedPrograms)} -join ', ')', 'Security Alert')"`);
     }
     return detectedPrograms.join(', ');
 }
+
 
 // Function to create a network diagnostic file
 async function netfileCreate() {
@@ -332,7 +342,7 @@ async function netfileCreate() {
 // Function to create a Windows Restore Point
 async function createRestorePoint() {
     const commands = [
-        'power shell.exe -Command "Checkpoint-Computer -Description \'Restore Point created by icoptimizer\' -RestorePointType \'MODIFY_SETTINGS\'"'
+        'powershell.exe -Command "Checkpoint-Computer -Description \'Restore Point created by icoptimizer\' -RestorePointType \'MODIFY_SETTINGS\'"'
     ];
     const results = await Promise.all(commands.map(runCommand));
     return results.map(r => r.stdout).join('\n');

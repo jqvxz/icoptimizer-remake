@@ -214,5 +214,3 @@ if (!Locked) {
 
     require('./dc-presence')
 }
-
-//Bitte E.., ich brauche dich
