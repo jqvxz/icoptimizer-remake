@@ -1,17 +1,17 @@
-# !
-- I am currently working on a redesign of the program (will release in abt 2 months)
+## !
+Currently working on a new porgram combining icoptimizer and install, debloat and generel windows utility
 
-# Info
+## Info
 - icoptimizer might be unstable, crash or not work since this is my first electron program
 - The program modifies system functionality. Therefore, some features of the Windows operating system will be affected by the application
 
-# How to use?
+## How to use?
 - Install the program using the installer provided in the releases tab
 - Execute the installed program and select your tweaks
 - Click "exceute" at the bottom of the app and wait
 - You can switch to Light / Dark mode using the top right slider
 
-# Installation guide for building it by yourself
+## Installation guide for building it by yourself
 ```CMD
 winget install nodejs
 winget install git
@@ -26,21 +26,21 @@ npm run build
 npm start
 ```
 
-# VirusTotal scan results
+## VirusTotal scan results
 
 - [VirusTotal scan](https://www.virustotal.com/gui/file/8e179419b79df9602c73c439e1e2eaec110fae14dcf04c2012c52e383c6c860b)
 - Bkav Pro detects the program as a "W32.AIDetectMalware" please dm if you can help me (false positive)
 
-# Why?
+## Why?
 icoptimizer was created to improve Windows performance while maintaining almost all of its functionality.
 I developed the program because other optimizers are either ineffective or overly complicated.
 You can use icoptimizer to optimize your in-game performance and reduce latency.
 For a more lightweight version use the original icoptimizer (might be outdated)
 
-# UI
+## UI
 ![1.1.4](https://github.com/user-attachments/assets/267adaf4-d5fb-4cc9-815a-4816c411d08b)
 
-# Disclaimer
+## Disclaimer
 
 This software is provided **"as is"** without any guarantees or warranties of any kind. By using this software, you agree to the following:
 
